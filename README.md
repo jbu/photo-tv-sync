@@ -42,8 +42,11 @@ As photos upload, thumbnails are displayed inline in the terminal (requires a [K
 
 - **Auto-discovery**: the TV's IP is found via SSDP if `--tv-ip` / `SAMSUNG_TV_IP` is not set.
 - **Deduplication**: uploaded photo UUIDs are tracked in `~/.config/photo-tv-sync/uploaded.json`. Already-uploaded photos are skipped on subsequent runs. Interrupted runs resume from where they left off.
-- **Resolution check**: photos where the local file is less than 50% of the original's resolution are skipped — this catches iCloud low-res proxies. Re-download the originals in Photos.app (select photos → right-click → Download Originals) and retry.
-- **Conversion**: photos are converted to JPEG and resized to 3840px on the long edge before upload. HEIC originals are supported.
+- **Format support**: all photo formats supported by Photos.app work — JPEG, HEIC, RAW (NEF, CR2, ARW, etc.). iCloud photos are downloaded on demand.
+- **Edits**: if a photo has been edited in Photos.app, the edited version is exported (crops, adjustments, filters all applied).
+- **Orientation**: EXIF orientation is baked into the pixels before upload so photos display correctly on the TV.
+- **Resolution check**: photos where the exported file is less than 50% of the original's resolution are skipped — this catches iCloud low-res proxies that failed to download. Re-download the originals in Photos.app (select photos → right-click → Download Originals) and retry.
+- **Conversion**: photos are converted to JPEG and resized to 3840px on the long edge before upload.
 
 ## Options
 
